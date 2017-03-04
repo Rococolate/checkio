@@ -1,4 +1,4 @@
-# Bird Language
+# [Bird Language](https://js.checkio.org/mission/bird-language/)
 
 The mission is in Collecting Mode. In order to see solutions of other users, you should share your own solutions first.
 

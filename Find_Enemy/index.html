@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .body{
+      position: relative;
+    }
+    .HEX{
+      position: absolute;
+      background-color: yellowgreen;
+      box-sizing:border-box;
+      text-align: center;
+      line-height: 50px;
+    }
+    .HEX:before{
+      content: '';
+      display: block;
+      position: absolute;
+      top:0;
+      left:100%;
+      width: 0;
+      height: 0;
+      border-top:26px solid transparent;
+      border-bottom: 26px solid transparent; 
+      border-left: 15px solid yellowgreen; 
+      border-right: 15px solid transparent; 
+    }
+    .HEX:after{
+      content: '';
+      display: block;
+      position: absolute;
+      top:0;
+      right:100%;
+      width: 0;
+      height: 0;
+      border-top:26px solid transparent;
+      border-bottom: 26px solid transparent; 
+      border-left: 15px solid transparent; 
+      border-right: 15px solid yellowgreen; 
+    }
+    .HEX:hover{background-color: pink;}
+    .HEX:hover:before{border-left-color: pink;}
+    .HEX:hover:after{border-right-color: pink;}
+
+    .HEX.red{background-color: red;}
+    .HEX.red:before{border-left-color: red;}
+    .HEX.red:after{border-right-color: red;}
+  </style>
+</head>
+<body>
+  <script src="./main.js"></script>
+</body>
+</html>
