@@ -1,6 +1,7 @@
 'use strict';
 
 function binaryCount(number){
+  // number.toString(2) 转换成二进制显示
   return number.toString(2).split('').filter( item => item === '1' ).length;
 }
 

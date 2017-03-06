@@ -20,33 +20,23 @@ map.forEach( (item, i) => {
 });
 
 function cook(obj, i, j){
-  let N = map[i][j-1]; 
-  let S = map[i][j+1];
+  let N  = null; 
+  let S  = null;
   let NW = null;
   let SW = null;
   let NE = null;
   let SE = null;
+  const a = i % 2;
   obj.left = i * X;
-  if ( i % 2 === 0 ) obj.top = j * 2 * Y;
-  if ( i % 2 === 1 ) obj.top = j * 2 * Y + Y;
-  if ( map[i-1] ) {
-    if ( i%2 === 1 ) {
-      NE = map[i-1][j];
-      SE = map[i-1][j+1];
-    } else {
-      NE = map[i-1][j-1];
-      SE = map[i-1][j];
-    }
-  }
-  if ( map[i+1] ){
-    if ( i%2 === 1 ) {
-      NW = map[i+1][j];
-      SW = map[i+1][j+1];
-    } else {
-      NW = map[i+1][j-1];
-      SW = map[i+1][j];
-    }
-  }
+  obj.top = (j * 2 + a ) * Y ;
+  
+  if ( map[i][j-1] )                 N = map[i][j-1]; 
+  if ( map[i][j+1] )                 S = map[i][j+1]; 
+  if ( map[i-1] && map[i-1][j-1+a] ) NE = map[i-1][j-1+a];
+  if ( map[i-1] && map[i-1][j+a] )   SE = map[i-1][j+a];
+  if ( map[i+1] && map[i+1][j-1+a] ) NW = map[i+1][j-1+a];
+  if ( map[i+1] && map[i+1][j+a] )   SW = map[i+1][j+a];
+
   obj.x = i;
   obj.y = j;
   obj['N'] = N;
@@ -65,19 +55,12 @@ function cook(obj, i, j){
     const ex = fa(enemy.split('')[0]);
     const ey = enemy.split('')[1];
 
-    if ( ex === x && ey >  y ) { return  this['S'].find(enemy,count);} // S
-    if ( ex === x && ey <  y ) { return  this['N'].find(enemy,count);} // N
-    if ( x % 2 === 1 ) {
-      if ( ex >   x && ey <= y ) { return this['NW'].find(enemy,count);} // NW
-      if ( ex >   x && ey >  y ) { return this['SW'].find(enemy,count);} // SW
-      if ( ex <   x && ey <= y ) { return this['NE'].find(enemy,count);} // NE
-      if ( ex <   x && ey >  y ) { return this['SE'].find(enemy,count);} // SE
-    } else {
-      if ( ex >   x && ey <  y ) { return this['NW'].find(enemy,count);} // NW
-      if ( ex >   x && ey >= y ) { return this['SW'].find(enemy,count);} // SW
-      if ( ex <   x && ey <  y ) { return this['NE'].find(enemy,count);} // NE
-      if ( ex <   x && ey >= y ) { return this['SE'].find(enemy,count);} // SE
-    }
+    if ( ex === x && ey >  y )        { return  this['S'].find(enemy,count);} // S
+    if ( ex === x && ey <  y )        { return  this['N'].find(enemy,count);} // N
+    if ( ex >   x && y - ey >=  1-a ) { return this['NW'].find(enemy,count);} // NW
+    if ( ex >   x && y - ey <   1-a ) { return this['SW'].find(enemy,count);} // SW
+    if ( ex <   x && y - ey >=  1-a ) { return this['NE'].find(enemy,count);} // NE
+    if ( ex <   x && y - ey <   1-a ) { return this['SE'].find(enemy,count);} // SE
     
   }
 
@@ -182,6 +165,7 @@ function enemyDirection(dir, enemyAngle){
   }
 }
 
+console.log("'G5', 'N', 'Q0' : ", findEnemy('G5', 'N', 'Q0') );
 console.log("'G5', 'N', 'G3' : ", findEnemy('G5', 'SW', 'G3') );
 console.log("'G5', 'N', 'H3' : ", findEnemy('G5', 'SW', 'H3') );
 console.log("'G5', 'N', 'I4' : ", findEnemy('G5', 'SW', 'I4') );

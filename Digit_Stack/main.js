@@ -1,10 +1,31 @@
 'use strict';
 
-function binaryCount(number){
-  return number.toString(2).split('').filter( item => item === '1' ).length;
+function digitStack(commands){
+  let sum = 0;
+  let array = [];
+  if ( commands.length === 0 ) return sum;
+  
+  const cook = command => {
+    const cmd = command.split(' ')[0];
+    const num = Number(command.split(' ')[1]);
+    if ( cmd === 'PUSH') {
+      array.push(num);
+    }
+    if ( cmd === 'POP' ) {
+      if ( array.length > 0 ) {
+        sum += array.pop();
+      } 
+    }
+    if ( cmd === 'PEEK' ) {
+      if ( array.length > 0 ) {
+        sum += array[array.length - 1];
+      }
+    }
+  }
+
+  commands.forEach(cook);
+
+  return sum;
 }
 
-console.log(binaryCount(4), 1);
-console.log(binaryCount(15), 4);
-console.log(binaryCount(1), 1);
-console.log(binaryCount(1022), 9);
+console.log(digitStack(["PUSH 3", "POP", "POP", "PUSH 4", "PEEK","PUSH 9", "PUSH 0", "PEEK", "POP", "PUSH 1", "PEEK"]),8, "Example")
