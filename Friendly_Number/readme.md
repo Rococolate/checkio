@@ -66,7 +66,7 @@ friendlyNumber(1024000000, {base: 1024, suffix: 'iB'}) == '976MiB'
 
 1 < base ≤ 10^32
 
--1032 < number ≤ 10^32
+-10^32 < number ≤ 10^32
 
 0 ≤ decimals ≤ 15
 
