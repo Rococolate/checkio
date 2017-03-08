@@ -9,22 +9,39 @@ You should write a function for converting a **number** to string using several 
 Let's look at examples. It will be simpler.
 
 - n=102
+
   result: "102", the base is default 1000 and 102 is lower this base.
+
 - n=10240
+
   result: "10k", the base is default 1000 and rounding down.
+
 - n=12341234, decimals=1
+
   result: "12.3M", one digit after the dot.
+
 - n=12000000, decimals=3
+
   result: "12.000M", trailing zeros.
+
 - n=12461, decimals=1
+
   result: "12.5k", standard rounding.
+
 - n=1024000000, base=1024, suffix='iB'
+
   result: '976MiB', the different base and the suffix.
+
 - n=-150, base=100, powers=['', 'd', 'D']
+
   result: '-1d', the negative number and rounding towards zero.
+
 - n=-155, base=100, decimals=1, powers=['', 'd', 'D']
+
   result: '-1.6d', the negative number and standard rounding.
+  
 - n=255000000000, powers=['', 'k', 'M']
+
   result: '255000M', there is not enough powers.
 
 **Input:** A number as an integer. The keyword argument "base" as an integer, default 1000. The keyword argument "decimals" as an integer, default 0. The keyword argument "powers" as a list of string, default ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'].
