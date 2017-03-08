@@ -39,7 +39,7 @@ Let's look at examples. It will be simpler.
 - n=-155, base=100, decimals=1, powers=['', 'd', 'D']
 
   result: '-1.6d', the negative number and standard rounding.
-  
+
 - n=255000000000, powers=['', 'k', 'M']
 
   result: '255000M', there is not enough powers.
@@ -63,7 +63,11 @@ friendlyNumber(1024000000, {base: 1024, suffix: 'iB'}) == '976MiB'
 
 
 **Precondition:**
+
 1 < base ≤ 10^32
+
 -1032 < number ≤ 10^32
+
 0 ≤ decimals ≤ 15
+
 0 < len(powers) ≤ 32
