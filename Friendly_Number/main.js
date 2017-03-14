@@ -36,5 +36,7 @@ console.log(friendlyNumber(-150, {base: 100, powers : ['', 'd', 'D']}), '-1d', "
 console.log(friendlyNumber(-155, {decimals : 1, base: 100, powers : ['', 'd', 'D']}), '-1.6d', "-1.6d");
 console.log(friendlyNumber(255000000000, {powers : ['', 'k', 'M']}), '255000M', "255000M");
 
-
+if ( typeof module === 'object' ) {
+  module.exports = friendlyNumber;
+}
 

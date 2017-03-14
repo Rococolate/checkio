@@ -29,3 +29,7 @@ function digitStack(commands){
 }
 
 console.log(digitStack(["PUSH 3", "POP", "POP", "PUSH 4", "PEEK","PUSH 9", "PUSH 0", "PEEK", "POP", "PUSH 1", "PEEK"]),8, "Example")
+
+if ( typeof module === 'object' ) {
+  module.exports = digitStack;
+}

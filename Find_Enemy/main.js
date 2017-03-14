@@ -187,4 +187,6 @@ console.log("'I6', 'N', 'H6' : ", findEnemy('I6', 'N', 'H6') );
 console.log("'I6', 'N', 'H5' : ", findEnemy('I6', 'N', 'H5') );
 console.log("'I6', 'N', 'I6' : ", findEnemy('I6', 'N', 'I6') );
 
-
+if ( typeof module === 'object' ) {
+  module.exports = findEnemy;
+}

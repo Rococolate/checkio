@@ -22,3 +22,7 @@ function pow2(x){
 console.log('triangleAngles (3, 4, 5):',triangleAngles (3, 4, 5));
 console.log('triangleAngles (1, 1, 1):',triangleAngles (1, 1, 1));
 console.log('triangleAngles (1, 1, 5):',triangleAngles (1, 1, 5));
+
+if ( typeof module === 'object' ) {
+  module.exports = triangleAngles;
+}

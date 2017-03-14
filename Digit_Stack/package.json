@@ -1,6 +1,18 @@
 {
-  "name": "Bird_Language",
+  "name": "Digit_Stack",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "karma start"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1",
+    "chai": "^3.5.0",
+    "karma": "^1.5.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "mocha": "^3.2.0"
+  }
 }

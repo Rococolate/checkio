@@ -45,3 +45,7 @@ function checkSafe(){
 
 console.log(safePawns(["b4", "d4", "f4", "c3", "e3", "g5", "d2"]), 6, "First");
 console.log(safePawns(["b4", "c4", "d4", "e4", "f4", "g4", "e5"]), 1, "Second");
+
+if ( typeof module === 'object' ) {
+  module.exports = safePawns;
+}
