@@ -1,17 +1,9 @@
 'use strict';
 
-var on_panels = [
-  [ 0, 0, 0, 0, 1 ],
-  [ 0, 1, 0, 0, 0 ],
-  [ 0, 0, 1, 1, 0 ],
-  [ 0, 0, 1, 0, 0 ],
-  [ 0, 0, 0, 0, 0 ],
-]
-
-var on_panels = [5, 7, 13, 14, 18]
-
-function wallKeeper(on_panels){
-  const matrix = translate(on_panels,5)
+// var on_panels = [5, 7, 13, 14, 18]
+// wallKeeper(on_panels);
+function wallKeeper(on_panels,level=5){
+  const matrix = translate(on_panels,level)
   const firstRow = firstRowFactory(matrix[0].length);
   const answer = [];
   firstRow.forEach(item => {
@@ -19,7 +11,7 @@ function wallKeeper(on_panels){
     if ( a.count === 0 ) answer.push(a.list);
   });
   console.log(JSON.stringify(answer));
-  return answer[0];
+  return answer;
 }
 
 function translate(on_panels,level){
@@ -40,7 +32,10 @@ function translate(on_panels,level){
 }
 
 function firstRowFactory(level){
-  const firstRow = [];
+  const firstRow = [
+    [...(Array(level).join(',').split(',').map(()=>0))]
+  ];
+
   let max = level;
   function loop() {
     for(let i = 0 ; i < max ; i ++ ){
@@ -96,5 +91,4 @@ function counter(array){
   }
   return count;
 }
-
-wallKeeper(on_panels);
+export default wallKeeper;

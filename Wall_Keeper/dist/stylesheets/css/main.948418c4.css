@@ -1,6 +1,6 @@
 /*!
  * 作者： wgx
- * 日期：1493282064517
+ * 日期：1493347108643
  */
 *{
   box-sizing:border-box;
@@ -42,4 +42,7 @@ table{
 tbody>tr>td{
   border: 1px solid #ddd;
   padding: 1em;
+}select,button{
+  display: inline-block;
+  margin:auto;
 }
