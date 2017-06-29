@@ -1,7 +1,5 @@
 'use strict';
 
-// var on_panels = [5, 7, 13, 14, 18]
-// wallKeeper(on_panels);
 function wallKeeper(on_panels,level=5){
   const matrix = translate(on_panels,level)
   const firstRow = firstRowFactory(matrix[0].length);
@@ -10,7 +8,7 @@ function wallKeeper(on_panels,level=5){
     let a = check(item,matrix);
     if ( a.count === 0 ) answer.push(a.list);
   });
-  console.log(JSON.stringify(answer));
+  // console.log(JSON.stringify(answer));
   return answer;
 }
 
