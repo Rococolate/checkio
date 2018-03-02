@@ -19,16 +19,16 @@ function findNearEnemy(enemies,point){
   const L = formatLocation(point);
   const A = [];
   for (let i = L.i ; i >= 0 ; i --){ // N
-    if (enemies.join(',').indexOf(col_letter[L.j]+row_letter[i]) !== -1) {A.push(loactionToStr(i,L.j));break;}
+    if (enemies.indexOf(col_letter[L.j]+row_letter[i]) !== -1) {A.push(loactionToStr(i,L.j));break;}
   }
   for (let i = L.i ; i < 8 ; i ++){ // S
-    if (enemies.join(',').indexOf(col_letter[L.j]+row_letter[i]) !== -1) {A.push(loactionToStr(i,L.j));break;}
+    if (enemies.indexOf(col_letter[L.j]+row_letter[i]) !== -1) {A.push(loactionToStr(i,L.j));break;}
   }
   for (let j = L.j ; j >= 0 ; j --){ // W
-    if (enemies.join(',').indexOf(col_letter[j]+row_letter[L.i]) !== -1) {A.push(loactionToStr(L.i,j));break;}
+    if (enemies.indexOf(col_letter[j]+row_letter[L.i]) !== -1) {A.push(loactionToStr(L.i,j));break;}
   }
   for (let j = L.j ; j < 8 ; j ++){ // E
-    if (enemies.join(',').indexOf(col_letter[j]+row_letter[L.i]) !== -1) {A.push(loactionToStr(L.i,j));break;}
+    if (enemies.indexOf(col_letter[j]+row_letter[L.i]) !== -1) {A.push(loactionToStr(L.i,j));break;}
   }
   return A;
 }
@@ -39,23 +39,42 @@ function removeEnemies(enemies,remove){
   });
 }
 
+function formatArray(arr){
+  const a = [];
+  for (let i = 0; i < arr.length; i ++){
+    if (arr[i].length >0) {
+      for (let j = 0 ; j < arr[i].length ; j ++){
+        if (arr[i][j].length >0) a.push(arr[i][j]);
+      }
+    }
+  }
+  return a;  
+}
+
 function berserkRook(marbles, enemies) {
-  let length = 0;
+  const _marbles = marbles;
+  let answer = marbles;
   let a = [marbles];
+  let b = [];
   for(let i = 0 ; true; i++){
-    a = a.map((item)=>{
-      let arr_item = item.split(',');
-      let _next = findNearEnemy(removeEnemies(enemies,item),arr_item[arr_item.length -1]);
-      return _next.map(it => item+','+it);
-    }).reduce((pre,cur)=>pre.concat(cur),[]); 
+    for(let j = 0; j < a.length ; j ++ ){
+      let l = a[j].length;
+      let arr_item = a[j][l-2] + a[j][l-1];
+      let _next = findNearEnemy(removeEnemies(enemies,a[j]),arr_item).map(it => a[j]+','+it);
+      b.push(_next);
+    }
+    a = formatArray(b);
+    b = null;
+    b = [];
     a.forEach(item => {
-      if (item.split(',').length > length) length = item.split(',').length;
+      let l = item.length;
+      if (l > answer.length) answer = item;
     });
     if (i > 100000) break;
     if (a.length === 0 ) break;
   }
-  length = length === 0 ? 0 : length -1;
-  return length;
+  answer = answer.split(',').filter(item => item !== _marbles);
+  return answer.length;
 }
 
 console.log(berserkRook('d5', [
@@ -63,7 +82,7 @@ console.log(berserkRook('d5', [
   // 'b1','b2','b3','b4','b5','b6','b7','b8',
   'c1','c2','c3','c4','c5','c6','c7','c8',
   'd1','d2','d3','d4',     'd6','d7','d8',
-  'e5',
+  'e3','e4','e5','e6','e7','e8',
   // 'e1','e2','e3','e4','e5','e6','e7','e8',
   // 'f1','f2','f3','f4','f5','f6','f7','f8',
   // 'g1','g2','g3','g4','g5','g6','g7','g8',
